@@ -11,7 +11,7 @@ import Combine
 struct API {
     static private let baseURL = "https://api.github.com"
     
-    enum endpoint {
+    enum Endpoint {
         case fetch(username: String)
         
         private var url: URL {
