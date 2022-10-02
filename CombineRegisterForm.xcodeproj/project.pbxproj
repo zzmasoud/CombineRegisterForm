@@ -56,15 +56,39 @@
 		04736DC128E9AF7D00028015 /* CombineRegisterForm */ = {
 			isa = PBXGroup;
 			children = (
+				04736DD828E9B00E00028015 /* View */,
+				04736DD728E9AFE000028015 /* Network */,
+				04736DD628E9AFDA00028015 /* Model */,
 				04736DC228E9AF7D00028015 /* AppDelegate.swift */,
 				04736DC428E9AF7D00028015 /* SceneDelegate.swift */,
-				04736DC628E9AF7D00028015 /* ViewController.swift */,
-				04736DC828E9AF7D00028015 /* Main.storyboard */,
 				04736DCB28E9AF8000028015 /* Assets.xcassets */,
 				04736DCD28E9AF8000028015 /* LaunchScreen.storyboard */,
 				04736DD028E9AF8000028015 /* Info.plist */,
 			);
 			path = CombineRegisterForm;
+			sourceTree = "<group>";
+		};
+		04736DD628E9AFDA00028015 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		04736DD728E9AFE000028015 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		04736DD828E9B00E00028015 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04736DC628E9AF7D00028015 /* ViewController.swift */,
+				04736DC828E9AF7D00028015 /* Main.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
