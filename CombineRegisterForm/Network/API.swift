@@ -14,7 +14,7 @@ struct API {
     enum Endpoint {
         case fetch(username: String)
         
-        private var url: URL {
+        var url: URL {
             switch self {
             case .fetch(let username):
                 return URL(string: API.baseURL + "/users/" + username)!
@@ -22,8 +22,11 @@ struct API {
         }
     }
     
-    static private func fetch(username: String) -> AnyPublisher<GithubUser?, Never> {
-        return Empty<GithubUser?, Never>()
+    // This is completely wrong(bcz of the retun type)! but I'm going to keep it temporary...
+    static func request(endpoint: Endpoint) -> AnyPublisher<GithubUser?, any Error> {
+        URLSession.shared.dataTaskPublisher(for: endpoint.url)
+            .map(\.data)
+            .decode(type: GithubUser?.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
 }
