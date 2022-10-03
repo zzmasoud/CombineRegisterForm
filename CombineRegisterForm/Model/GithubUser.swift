@@ -11,6 +11,12 @@ import Foundation
 // https://api.github.com/users/zzmasoud
 
 struct GithubUser: Decodable {
+    static private let dateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return formatter
+    }()
+    
     let login: String
     let public_repos: Int
     let avatar_url: String
