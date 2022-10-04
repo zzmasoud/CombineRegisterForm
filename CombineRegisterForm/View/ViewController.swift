@@ -25,22 +25,35 @@ class ViewController: UIViewController {
     private var subscriptions = [AnyCancellable]()
     
     @Published private var username: String = ""
-    @Published private var user: GithubUser?
+    @Published private var user: GithubUser? {
+        didSet {
+            guard let date = user?.createdAt else { return hideUsernameError() }
+            
+            usernameErrorLabel.text = "Already exist. (created at \(date.description))"
+            usernameErrorLabel.isHidden = false
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        hideUsernameError()
         usernameTextField.addTarget(self, action: #selector(usernameValueChanged), for: .editingChanged)
 
         $username
-            .drop(while: {$0.count < 4})
+            .filter { [weak self] in
+                self?.hideUsernameError()
+                return $0.count > 3
+                
+            }
             .throttle(for: .seconds(1), scheduler: DispatchQueue.main, latest: true)
             .removeDuplicates()
             .map({ text in
                 return API.request(endpoint: .fetch(username: text))
             })
+            .print("pipeline")
             .switchToLatest()
             .receive(on: RunLoop.main)
-            .print("pipeline")
             .assign(to: \.user, on: self)
             .store(in: &subscriptions)
         
@@ -59,6 +72,10 @@ class ViewController: UIViewController {
 
     @objc func usernameValueChanged() {
         username = usernameTextField.text ?? ""
+    }
+    
+    private func hideUsernameError() {
+        usernameErrorLabel.isHidden = true
     }
 
 
