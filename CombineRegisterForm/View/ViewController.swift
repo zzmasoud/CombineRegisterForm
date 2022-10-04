@@ -43,6 +43,18 @@ class ViewController: UIViewController {
             .print("pipeline")
             .assign(to: \.user, on: self)
             .store(in: &subscriptions)
+        
+        API.activityPublisher
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] isActive in
+                if isActive {
+                    self?.usernameLoadingActivity.isHidden = false
+                    self?.usernameLoadingActivity.startAnimating()
+                } else {
+                    self?.usernameLoadingActivity.stopAnimating()
+                }
+            })
+            .store(in: &subscriptions)
     }
 
     @objc func usernameValueChanged() {
