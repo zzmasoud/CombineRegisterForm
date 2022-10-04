@@ -22,9 +22,18 @@ struct API {
         }
     }
     
+    static let activityPublisher = PassthroughSubject<Bool, Never>()
+    
     // This is completely wrong(bcz of the retun type)! but I'm going to keep it temporary...
     static func request(endpoint: Endpoint) -> AnyPublisher<GithubUser?, Never> {
         URLSession.shared.dataTaskPublisher(for: endpoint.url)
+            .handleEvents(receiveSubscription: {_ in
+                Self.activityPublisher.send(true)
+            }, receiveCompletion: { _ in
+                Self.activityPublisher.send(false)
+            }, receiveCancel: {
+                Self.activityPublisher.send(false)
+            })
             .map(\.data)
             .decode(type: GithubUser?.self, decoder: JSONDecoder())
             .catch({ error in
