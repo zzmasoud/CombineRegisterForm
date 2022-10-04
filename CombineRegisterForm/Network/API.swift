@@ -23,10 +23,13 @@ struct API {
     }
     
     // This is completely wrong(bcz of the retun type)! but I'm going to keep it temporary...
-    static func request(endpoint: Endpoint) -> AnyPublisher<GithubUser?, any Error> {
+    static func request(endpoint: Endpoint) -> AnyPublisher<GithubUser?, Never> {
         URLSession.shared.dataTaskPublisher(for: endpoint.url)
             .map(\.data)
             .decode(type: GithubUser?.self, decoder: JSONDecoder())
+            .catch({ error in
+                return Just(nil)
+            })
             .eraseToAnyPublisher()
     }
 }
