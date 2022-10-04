@@ -23,10 +23,31 @@ class ViewController: UIViewController {
     @IBOutlet private weak var button: UIButton!
     
     private var subscriptions = [AnyCancellable]()
+    
+    @Published private var username: String = ""
+    @Published private var user: GithubUser?
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        usernameTextField.addTarget(self, action: #selector(usernameValueChanged), for: .editingChanged)
+
+        $username
+            .throttle(for: .seconds(1), scheduler: DispatchQueue.main, latest: true)
+            .drop(while: {$0.count < 4})
+            .removeDuplicates()
+            .map({ text in
+                return API.request(endpoint: .fetch(username: text))
+            })
+            .switchToLatest()
+            .receive(on: RunLoop.main)
+            .print("pipeline")
+            .assign(to: \.user, on: self)
+            .store(in: &subscriptions)
+    }
+
+    @objc func usernameValueChanged() {
+        username = usernameTextField.text ?? ""
     }
 
 
