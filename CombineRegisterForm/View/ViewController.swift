@@ -84,6 +84,7 @@ class ViewController: UIViewController {
                     self?.passwordErrorLabel.text = "Should contains especial characters."
                     return false
                 }
+                self?.passwordErrorLabel.isHidden = true
                 return true
             }
             .sink(receiveValue: {print($0)})
