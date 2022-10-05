@@ -47,7 +47,6 @@ class ViewController: UIViewController {
             .filter { [weak self] in
                 self?.hideUsernameError()
                 return $0.count > 3
-                
             }
             .throttle(for: .seconds(1), scheduler: DispatchQueue.main, latest: true)
             .removeDuplicates()
@@ -70,6 +69,24 @@ class ViewController: UIViewController {
                     self?.usernameLoadingActivity.stopAnimating()
                 }
             })
+            .store(in: &subscriptions)
+        
+        $password
+            .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
+            .filter { [weak self] text in
+                guard text.count > 8 else {
+                    self?.passwordErrorLabel.isHidden = false
+                    self?.passwordErrorLabel.text = "Should contains 8 or more characters."
+                    return false
+                }
+                guard text.contains("@") else {
+                    self?.passwordErrorLabel.isHidden = false
+                    self?.passwordErrorLabel.text = "Should contains especial characters."
+                    return false
+                }
+                return true
+            }
+            .sink(receiveValue: {print($0)})
             .store(in: &subscriptions)
     }
 
