@@ -34,11 +34,14 @@ class ViewController: UIViewController {
         }
     }
     
+    @Published private var password: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         hideUsernameError()
         usernameTextField.addTarget(self, action: #selector(usernameValueChanged), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(passwordValueChanged), for: .editingChanged)
 
         $username
             .filter { [weak self] in
@@ -72,6 +75,10 @@ class ViewController: UIViewController {
 
     @objc func usernameValueChanged() {
         username = usernameTextField.text ?? ""
+    }
+    
+    @objc func passwordValueChanged() {
+        password = passwordTextField.text ?? ""
     }
     
     private func hideUsernameError() {
