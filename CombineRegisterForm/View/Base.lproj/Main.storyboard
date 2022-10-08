@@ -19,8 +19,20 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="g54-9I-Mum">
                                 <rect key="frame" x="25" y="97" width="340" height="650"/>
                                 <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ys8-Tz-Gnj">
+                                        <rect key="frame" x="0.0" y="0.0" width="340" height="70"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dIp-iX-RPA">
+                                                <rect key="frame" x="135" y="0.0" width="70" height="70"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="dIp-iX-RPA" secondAttribute="height" multiplier="1:1" id="7Xe-hu-57e"/>
+                                                    <constraint firstAttribute="width" constant="70" id="soV-tB-KFE"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="QPe-iT-6h4" userLabel="Inputs Stack View">
-                                        <rect key="frame" x="0.0" y="0.0" width="340" height="189"/>
+                                        <rect key="frame" x="0.0" y="239.33333333333331" width="340" height="189"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="YXC-Ve-aWp" userLabel="Username">
                                                 <rect key="frame" x="0.0" y="0.0" width="340" height="52.333333333333336"/>
@@ -47,7 +59,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="RiM-fS-19P" userLabel="Password">
-                                                <rect key="frame" x="0.0" y="68.333333333333343" width="340" height="52.333333333333343"/>
+                                                <rect key="frame" x="0.0" y="68.333333333333371" width="340" height="52.333333333333343"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="0Uj-W2-LKs">
                                                         <rect key="frame" x="0.0" y="0.0" width="340" height="34"/>
@@ -68,7 +80,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="fFx-rx-6JF" userLabel="Repeat Password">
-                                                <rect key="frame" x="0.0" y="136.66666666666666" width="340" height="52.333333333333343"/>
+                                                <rect key="frame" x="0.0" y="136.66666666666669" width="340" height="52.333333333333343"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="aJn-PQ-WIa">
                                                         <rect key="frame" x="0.0" y="0.0" width="340" height="34"/>
@@ -81,7 +93,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7O8-GJ-B8j">
-                                                        <rect key="frame" x="0.0" y="38.000000000000028" width="340" height="14.333333333333336"/>
+                                                        <rect key="frame" x="0.0" y="38" width="340" height="14.333333333333336"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                         <color key="textColor" systemColor="systemPinkColor"/>
                                                         <nil key="highlightedColor"/>
@@ -110,6 +122,7 @@
                     </view>
                     <connections>
                         <outlet property="button" destination="fGM-at-FF1" id="Sc5-ZO-tFh"/>
+                        <outlet property="imageView" destination="dIp-iX-RPA" id="fNI-yf-s0i"/>
                         <outlet property="passwordErrorLabel" destination="6jh-C6-vAG" id="rT1-Yn-1IN"/>
                         <outlet property="passwordRepeatErrorLabel" destination="7O8-GJ-B8j" id="lPc-g8-rk6"/>
                         <outlet property="passwordRepeatTextField" destination="JDG-tE-k0o" id="DZi-WT-lgt"/>

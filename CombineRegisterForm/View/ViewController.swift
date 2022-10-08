@@ -10,6 +10,8 @@ import Combine
 
 class ViewController: UIViewController {
     
+    @IBOutlet private weak var imageView: UIImageView!
+
     @IBOutlet private weak var usernameTextField: UITextField!
     @IBOutlet private weak var usernameLoadingActivity: UIActivityIndicatorView!
     @IBOutlet private weak var usernameErrorLabel: UILabel!
