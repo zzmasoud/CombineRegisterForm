@@ -11,17 +11,17 @@ import Combine
 class ViewController: UIViewController {
     
     @IBOutlet private weak var imageView: UIImageView!
-
+    
     @IBOutlet private weak var usernameTextField: UITextField!
     @IBOutlet private weak var usernameLoadingActivity: UIActivityIndicatorView!
     @IBOutlet private weak var usernameErrorLabel: UILabel!
-
+    
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var passwordErrorLabel: UILabel!
-
+    
     @IBOutlet private weak var passwordRepeatTextField: UITextField!
     @IBOutlet private weak var passwordRepeatErrorLabel: UILabel!
-
+    
     @IBOutlet private weak var button: UIButton!
     
     private var subscriptions = [AnyCancellable]()
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         hideUsernameError()
         usernameTextField.addTarget(self, action: #selector(usernameValueChanged), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(passwordValueChanged), for: .editingChanged)
-
+        
         $username
             .filter { [weak self] in
                 self?.hideUsernameError()
@@ -91,8 +91,29 @@ class ViewController: UIViewController {
             }
             .sink(receiveValue: {print($0)})
             .store(in: &subscriptions)
+        
+        $user
+            .map { user -> AnyPublisher<UIImage, Never> in
+                guard let imageURL = user?.avatar_url else {
+                    return Just(UIImage()).eraseToAnyPublisher()
+                }
+                return URLSession.shared.dataTaskPublisher(for: URL(string: imageURL)!)
+                    .map(\.data)
+                    .map({ UIImage(data: $0)! })
+                    .catch { error in
+                        return Just(UIImage())
+                    }
+                    .eraseToAnyPublisher()
+            }
+            .switchToLatest()
+            .receive(on: RunLoop.main)
+            .map { image -> UIImage? in
+                image
+            }
+            .assign(to: \.image, on: self.imageView)
+            .store(in: &subscriptions)
     }
-
+    
     @objc func usernameValueChanged() {
         username = usernameTextField.text ?? ""
     }
@@ -104,7 +125,7 @@ class ViewController: UIViewController {
     private func hideUsernameError() {
         usernameErrorLabel.isHidden = true
     }
-
-
+    
+    
 }
 
