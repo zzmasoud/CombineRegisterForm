@@ -73,25 +73,6 @@ class ViewController: UIViewController {
             })
             .store(in: &subscriptions)
         
-        $password
-            .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
-            .filter { [weak self] text in
-                guard text.count > 8 else {
-                    self?.passwordErrorLabel.isHidden = false
-                    self?.passwordErrorLabel.text = "Should contains 8 or more characters."
-                    return false
-                }
-                guard text.contains("@") else {
-                    self?.passwordErrorLabel.isHidden = false
-                    self?.passwordErrorLabel.text = "Should contains especial characters."
-                    return false
-                }
-                self?.passwordErrorLabel.isHidden = true
-                return true
-            }
-            .sink(receiveValue: {print($0)})
-            .store(in: &subscriptions)
-        
         $user
             .map { user -> AnyPublisher<UIImage, Never> in
                 guard let imageURL = user?.avatar_url else {
@@ -112,6 +93,31 @@ class ViewController: UIViewController {
             }
             .assign(to: \.image, on: self.imageView)
             .store(in: &subscriptions)
+        
+        var passwordPublisher: AnyPublisher<String?, Never> {
+            return $password
+                .map({ [weak self] text in
+                    guard text.count > 8 else {
+                        self?.passwordErrorLabel.isHidden = false
+                        self?.passwordErrorLabel.text = "Should contains 8 or more characters."
+                        return nil
+                    }
+                    guard text.contains("@") else {
+                        self?.passwordErrorLabel.isHidden = false
+                        self?.passwordErrorLabel.text = "Should contains especial characters."
+                        return nil
+                    }
+                    self?.passwordErrorLabel.isHidden = true
+                    return text
+                })
+                .eraseToAnyPublisher()
+        }
+
+        passwordPublisher
+            .map({ $0 != nil })
+            .assign(to: \.isEnabled , on: button)
+            .store(in: &subscriptions)
+
     }
     
     @objc func usernameValueChanged() {
