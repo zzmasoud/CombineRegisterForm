@@ -37,6 +37,7 @@ class ViewController: UIViewController {
     }
     
     @Published private var password: String = ""
+    @Published private var passwordRepeat: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,7 @@ class ViewController: UIViewController {
         hideUsernameError()
         usernameTextField.addTarget(self, action: #selector(usernameValueChanged), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(passwordValueChanged), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(passwordRepeatValueChanged), for: .editingChanged)
         
         $username
             .filter { [weak self] in
@@ -112,9 +114,33 @@ class ViewController: UIViewController {
                 })
                 .eraseToAnyPublisher()
         }
+        
+        var passwordRepeatPublisher: AnyPublisher<String?, Never> {
+            return $passwordRepeat
+                .map({ [weak self] text in
+                    guard let self = self else { return nil }
+                    guard text == self.password else {
+                        self.passwordRepeatErrorLabel.text = "Password do not match."
+                        return nil
+                    }
+                    return text
+                })
+                .eraseToAnyPublisher()
+        }
+        
+        var passwordMatchPublisher: AnyPublisher<Bool, Never> {
+            return Publishers.CombineLatest(passwordPublisher, passwordRepeatPublisher)
+                .map { (val1, val2) in
+                    guard let text = val1,
+                          !text.isEmpty,
+                          val1 == val2 else { return false }
+                    return true
+                }
+                .eraseToAnyPublisher()
+        }
 
-        passwordPublisher
-            .map({ $0 != nil })
+        passwordMatchPublisher
+            .print("passwordMatch")
             .assign(to: \.isEnabled , on: button)
             .store(in: &subscriptions)
 
@@ -126,6 +152,10 @@ class ViewController: UIViewController {
     
     @objc func passwordValueChanged() {
         password = passwordTextField.text ?? ""
+    }
+    
+    @objc func passwordRepeatValueChanged() {
+        passwordRepeat = passwordRepeatTextField.text ?? ""
     }
     
     private func hideUsernameError() {
