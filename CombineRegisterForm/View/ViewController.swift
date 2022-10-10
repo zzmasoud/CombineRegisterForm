@@ -99,7 +99,7 @@ class ViewController: UIViewController {
         var passwordPublisher: AnyPublisher<String?, Never> {
             return $password
                 .map({ [weak self] text in
-                    guard text.count > 8 else {
+                    guard text.count >= 8 else {
                         self?.passwordErrorLabel.isHidden = false
                         self?.passwordErrorLabel.text = "Should contains 8 or more characters."
                         return nil
