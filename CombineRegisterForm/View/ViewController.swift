@@ -105,11 +105,10 @@ class ViewController: UIViewController {
                         return nil
                     }
                     guard text.contains("@") else {
-                        self?.passwordErrorLabel.isHidden = false
                         self?.passwordErrorLabel.text = "Should contains especial characters."
                         return nil
                     }
-                    self?.passwordErrorLabel.isHidden = true
+                    self?.passwordErrorLabel.text = nil
                     return text
                 })
                 .eraseToAnyPublisher()
@@ -123,6 +122,7 @@ class ViewController: UIViewController {
                         self.passwordRepeatErrorLabel.text = "Password do not match."
                         return nil
                     }
+                    self.passwordRepeatErrorLabel.text = nil
                     return text
                 })
                 .eraseToAnyPublisher()
