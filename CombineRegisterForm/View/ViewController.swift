@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         hideUsernameError()
         usernameTextField.addTarget(self, action: #selector(usernameValueChanged), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(passwordValueChanged), for: .editingChanged)
-        passwordTextField.addTarget(self, action: #selector(passwordRepeatValueChanged), for: .editingChanged)
+        passwordRepeatTextField.addTarget(self, action: #selector(passwordRepeatValueChanged), for: .editingChanged)
         
         $username
             .filter { [weak self] in
