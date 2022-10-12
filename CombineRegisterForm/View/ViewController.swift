@@ -30,9 +30,7 @@ class ViewController: UIViewController {
     @Published private var user: GithubUser? {
         didSet {
             guard let date = user?.createdAt else { return hideUsernameError() }
-            
             usernameErrorLabel.text = "Already exist. (created at \(date.description))"
-            usernameErrorLabel.isHidden = false
         }
     }
     
@@ -161,7 +159,7 @@ class ViewController: UIViewController {
     }
     
     private func hideUsernameError() {
-        usernameErrorLabel.isHidden = true
+        usernameErrorLabel.text = nil
     }
     
     // https://stackoverflow.com/questions/27703039/check-if-string-contains-special-characters-in-swift
