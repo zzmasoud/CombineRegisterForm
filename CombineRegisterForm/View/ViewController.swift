@@ -99,16 +99,18 @@ class ViewController: UIViewController {
         var passwordPublisher: AnyPublisher<String?, Never> {
             return $password
                 .map({ [weak self] text in
+                    guard let self = self else { return nil }
+                    
                     guard text.count >= 8 else {
-                        self?.passwordErrorLabel.isHidden = false
-                        self?.passwordErrorLabel.text = "Should contains 8 or more characters."
+                        self.passwordErrorLabel.isHidden = false
+                        self.passwordErrorLabel.text = "Should contains 8 or more characters."
                         return nil
                     }
-                    guard text.contains("@") else {
-                        self?.passwordErrorLabel.text = "Should contains especial characters."
+                    guard self.hasSpecialCharacters(text: text) else {
+                        self.passwordErrorLabel.text = "Should contains especial characters."
                         return nil
                     }
-                    self?.passwordErrorLabel.text = nil
+                    self.passwordErrorLabel.text = nil
                     return text
                 })
                 .eraseToAnyPublisher()
@@ -162,6 +164,18 @@ class ViewController: UIViewController {
         usernameErrorLabel.isHidden = true
     }
     
-    
+    // https://stackoverflow.com/questions/27703039/check-if-string-contains-special-characters-in-swift
+    private func hasSpecialCharacters(text: String) -> Bool {
+        do {
+            let regex = try NSRegularExpression(pattern: ".*[^A-Za-z0-9].*", options: .caseInsensitive)
+            if let _ = regex.firstMatch(in: text, options: NSRegularExpression.MatchingOptions.reportCompletion, range: NSMakeRange(0, text.count)) {
+                return true
+            }
+        } catch {
+            debugPrint(error.localizedDescription)
+            return false
+        }
+        return false
+    }
 }
 
