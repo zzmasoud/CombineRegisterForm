@@ -24,6 +24,8 @@ class ViewController: UIViewController {
     
     @IBOutlet private weak var button: UIButton!
     
+    let backgroundQueue = DispatchQueue(label: "background.VC")
+    
     private var subscriptions = [AnyCancellable]()
     
     @Published private var username: String = ""
@@ -50,7 +52,7 @@ class ViewController: UIViewController {
                 self?.hideUsernameError()
                 return $0.count > 3
             }
-            .throttle(for: .seconds(1), scheduler: DispatchQueue.main, latest: true)
+            .throttle(for: .seconds(1), scheduler: backgroundQueue, latest: true)
             .removeDuplicates()
             .map({ text in
                 return API.request(endpoint: .fetch(username: text))
@@ -74,11 +76,12 @@ class ViewController: UIViewController {
             .store(in: &subscriptions)
         
         $user
-            .map { user -> AnyPublisher<UIImage, Never> in
-                guard let imageURL = user?.avatar_url else {
+            .map { [weak self] user -> AnyPublisher<UIImage, Never> in
+                guard let self = self, let imageURL = user?.avatar_url else {
                     return Just(UIImage()).eraseToAnyPublisher()
                 }
                 return URLSession.shared.dataTaskPublisher(for: URL(string: imageURL)!)
+                    .receive(on: self.backgroundQueue)
                     .map(\.data)
                     .map({ UIImage(data: $0)! })
                     .catch { error in
@@ -98,7 +101,7 @@ class ViewController: UIViewController {
             return $password
                 .map({ [weak self] text in
                     guard let self = self else { return nil }
-                    
+
                     guard text.count >= 8 else {
                         self.passwordErrorLabel.isHidden = false
                         self.passwordErrorLabel.text = "Should contains 8 or more characters."
