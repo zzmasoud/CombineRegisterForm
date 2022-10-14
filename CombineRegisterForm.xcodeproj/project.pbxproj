@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0438328C28F95067003E863A /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438328B28F95067003E863A /* FormModel.swift */; };
 		04736DC328E9AF7D00028015 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04736DC228E9AF7D00028015 /* AppDelegate.swift */; };
 		04736DC528E9AF7D00028015 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04736DC428E9AF7D00028015 /* SceneDelegate.swift */; };
 		04736DC728E9AF7D00028015 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04736DC628E9AF7D00028015 /* ViewController.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0438328B28F95067003E863A /* FormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormModel.swift; sourceTree = "<group>"; };
 		04736DBF28E9AF7D00028015 /* CombineRegisterForm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombineRegisterForm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04736DC228E9AF7D00028015 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04736DC428E9AF7D00028015 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				04736DD928E9B03E00028015 /* GithubUser.swift */,
+				0438328B28F95067003E863A /* FormModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 				04736DC728E9AF7D00028015 /* ViewController.swift in Sources */,
 				04736DDA28E9B03E00028015 /* GithubUser.swift in Sources */,
 				04736DC328E9AF7D00028015 /* AppDelegate.swift in Sources */,
+				0438328C28F95067003E863A /* FormModel.swift in Sources */,
 				04736DC528E9AF7D00028015 /* SceneDelegate.swift in Sources */,
 				04736DDC28E9B11200028015 /* API.swift in Sources */,
 			);
