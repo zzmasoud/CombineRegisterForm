@@ -162,6 +162,7 @@ class ViewController: UIViewController {
     }
     
     private func hideUsernameError() {
+        imageView.image = UIImage()
         usernameErrorLabel.text = nil
     }
     
