@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0438328C28F95067003E863A /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438328B28F95067003E863A /* FormModel.swift */; };
 		0438329428FAC789003E863A /* CombineRegisterFormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438329328FAC789003E863A /* CombineRegisterFormTests.swift */; };
+		0438329A28FAD39D003E863A /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438328B28F95067003E863A /* FormModel.swift */; };
 		04736DC328E9AF7D00028015 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04736DC228E9AF7D00028015 /* AppDelegate.swift */; };
 		04736DC528E9AF7D00028015 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04736DC428E9AF7D00028015 /* SceneDelegate.swift */; };
 		04736DC728E9AF7D00028015 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04736DC628E9AF7D00028015 /* ViewController.swift */; };
@@ -232,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0438329428FAC789003E863A /* CombineRegisterFormTests.swift in Sources */,
+				0438329A28FAD39D003E863A /* FormModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
