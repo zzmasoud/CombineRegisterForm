@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0438328C28F95067003E863A /* FormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438328B28F95067003E863A /* FormModel.swift */; };
+		0438329428FAC789003E863A /* CombineRegisterFormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0438329328FAC789003E863A /* CombineRegisterFormTests.swift */; };
 		04736DC328E9AF7D00028015 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04736DC228E9AF7D00028015 /* AppDelegate.swift */; };
 		04736DC528E9AF7D00028015 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04736DC428E9AF7D00028015 /* SceneDelegate.swift */; };
 		04736DC728E9AF7D00028015 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04736DC628E9AF7D00028015 /* ViewController.swift */; };
@@ -18,8 +19,20 @@
 		04736DDC28E9B11200028015 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04736DDB28E9B11200028015 /* API.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		0438329528FAC789003E863A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04736DB728E9AF7D00028015 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04736DBE28E9AF7D00028015;
+			remoteInfo = CombineRegisterForm;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0438328B28F95067003E863A /* FormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormModel.swift; sourceTree = "<group>"; };
+		0438329128FAC789003E863A /* CombineRegisterFormTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CombineRegisterFormTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0438329328FAC789003E863A /* CombineRegisterFormTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineRegisterFormTests.swift; sourceTree = "<group>"; };
 		04736DBF28E9AF7D00028015 /* CombineRegisterForm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombineRegisterForm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04736DC228E9AF7D00028015 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04736DC428E9AF7D00028015 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,6 +46,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0438328E28FAC789003E863A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		04736DBC28E9AF7D00028015 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -43,10 +63,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0438329228FAC789003E863A /* CombineRegisterFormTests */ = {
+			isa = PBXGroup;
+			children = (
+				0438329328FAC789003E863A /* CombineRegisterFormTests.swift */,
+			);
+			path = CombineRegisterFormTests;
+			sourceTree = "<group>";
+		};
 		04736DB628E9AF7D00028015 = {
 			isa = PBXGroup;
 			children = (
 				04736DC128E9AF7D00028015 /* CombineRegisterForm */,
+				0438329228FAC789003E863A /* CombineRegisterFormTests */,
 				04736DC028E9AF7D00028015 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				04736DBF28E9AF7D00028015 /* CombineRegisterForm.app */,
+				0438329128FAC789003E863A /* CombineRegisterFormTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,6 +133,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		0438329028FAC789003E863A /* CombineRegisterFormTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0438329728FAC789003E863A /* Build configuration list for PBXNativeTarget "CombineRegisterFormTests" */;
+			buildPhases = (
+				0438328D28FAC789003E863A /* Sources */,
+				0438328E28FAC789003E863A /* Frameworks */,
+				0438328F28FAC789003E863A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0438329628FAC789003E863A /* PBXTargetDependency */,
+			);
+			name = CombineRegisterFormTests;
+			productName = CombineRegisterFormTests;
+			productReference = 0438329128FAC789003E863A /* CombineRegisterFormTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		04736DBE28E9AF7D00028015 /* CombineRegisterForm */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 04736DD328E9AF8000028015 /* Build configuration list for PBXNativeTarget "CombineRegisterForm" */;
@@ -130,6 +178,10 @@
 				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
+					0438329028FAC789003E863A = {
+						CreatedOnToolsVersion = 14.0;
+						TestTargetID = 04736DBE28E9AF7D00028015;
+					};
 					04736DBE28E9AF7D00028015 = {
 						CreatedOnToolsVersion = 14.0;
 					};
@@ -149,11 +201,19 @@
 			projectRoot = "";
 			targets = (
 				04736DBE28E9AF7D00028015 /* CombineRegisterForm */,
+				0438329028FAC789003E863A /* CombineRegisterFormTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0438328F28FAC789003E863A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		04736DBD28E9AF7D00028015 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -167,6 +227,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0438328D28FAC789003E863A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0438329428FAC789003E863A /* CombineRegisterFormTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		04736DBB28E9AF7D00028015 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -181,6 +249,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0438329628FAC789003E863A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04736DBE28E9AF7D00028015 /* CombineRegisterForm */;
+			targetProxy = 0438329528FAC789003E863A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		04736DC828E9AF7D00028015 /* Main.storyboard */ = {
@@ -202,6 +278,40 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0438329828FAC789003E863A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zzmasoud.CombineRegisterFormTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CombineRegisterForm.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CombineRegisterForm";
+			};
+			name = Debug;
+		};
+		0438329928FAC789003E863A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zzmasoud.CombineRegisterFormTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CombineRegisterForm.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CombineRegisterForm";
+			};
+			name = Release;
+		};
 		04736DD128E9AF8000028015 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -373,6 +483,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0438329728FAC789003E863A /* Build configuration list for PBXNativeTarget "CombineRegisterFormTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0438329828FAC789003E863A /* Debug */,
+				0438329928FAC789003E863A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		04736DBA28E9AF7D00028015 /* Build configuration list for PBXProject "CombineRegisterForm" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
