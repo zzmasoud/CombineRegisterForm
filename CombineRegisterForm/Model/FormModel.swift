@@ -21,11 +21,14 @@ class FormModel: ObservableObject {
             passwordPub.send(password)
         }
     }
+    
     @Published var repeatPassword = "" {
         didSet {
             passwordRepeatPub.send(repeatPassword)
         }
     }
+    
+    @Published var validationErrorMsg: String? = nil
     
     private var subscriptions = [AnyCancellable]()
     
@@ -40,5 +43,9 @@ class FormModel: ObservableObject {
         canSubmit = validationPipeline
             .map({$0 == nil})
             .eraseToAnyPublisher()
+        
+        validationPipeline
+            .assign(to: \.validationErrorMsg, on: self)
+            .store(in: &subscriptions)
     }
 }
