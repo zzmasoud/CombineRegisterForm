@@ -36,5 +36,9 @@ class FormModel: ObservableObject {
                 guard pass == repeatPass else { return "not equal" }
                 return nil
             }
+        
+        canSubmit = validationPipeline
+            .map({$0 == nil})
+            .eraseToAnyPublisher()
     }
 }
