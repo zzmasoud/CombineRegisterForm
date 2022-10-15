@@ -9,6 +9,7 @@ import Foundation
 import Combine
 
 class FormModel: ObservableObject {
+    static let passwordMinLimit = 8
     
     // MARK: Publishers
     private let passwordPub = CurrentValueSubject<String, Never>("")
@@ -28,4 +29,12 @@ class FormModel: ObservableObject {
     
     private var subscriptions = [AnyCancellable]()
     
+    init() {
+        let validationPipeline = Publishers.CombineLatest(passwordPub, passwordRepeatPub)
+            .map { pass, repeatPass -> String? in
+                guard pass.count >= Self.passwordMinLimit else { return "pass short" }
+                guard pass == repeatPass else { return "not equal" }
+                return nil
+            }
+    }
 }
