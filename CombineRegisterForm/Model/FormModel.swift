@@ -17,6 +17,21 @@ class FormModel: ObservableObject {
         case notContainsLetters
         case notContainsSpecialChars
         case doesNotMatch
+        
+        var description: String {
+            switch self {
+            case .tooShort:
+                return "It should contains 8 or more characters."
+            case .notContainsNumbers:
+                return "It should contains numbers."
+            case .notContainsLetters:
+                return "It should contains letters."
+            case .notContainsSpecialChars:
+                return "It should at least contains 1 special character."
+            case .doesNotMatch:
+                return "Password doesn't match."
+            }
+        }
     }
     
     // MARK: Publishers
