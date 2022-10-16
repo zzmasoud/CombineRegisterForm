@@ -51,15 +51,15 @@ class FormModel: ObservableObject {
         }
     }
     
-    @Published var validationErrorMsg: String? = nil
+    @Published var validationError: ValidationError? = nil
     
     private var subscriptions = [AnyCancellable]()
     
     init() {
         let validationPipeline = Publishers.CombineLatest(passwordPub, passwordRepeatPub)
-            .map { pass, repeatPass -> String? in
-                guard pass.count >= Self.passwordMinLimit else { return "pass short" }
-                guard pass == repeatPass else { return "not equal" }
+            .map { pass, repeatPass -> ValidationError? in
+                guard pass.count >= Self.passwordMinLimit else { return ValidationError.tooShort }
+                guard pass == repeatPass else { return ValidationError.doesNotMatch }
                 return nil
             }
         
@@ -68,7 +68,7 @@ class FormModel: ObservableObject {
             .eraseToAnyPublisher()
         
         validationPipeline
-            .assign(to: \.validationErrorMsg, on: self)
+            .assign(to: \.validationError, on: self)
             .store(in: &subscriptions)
     }
 }
