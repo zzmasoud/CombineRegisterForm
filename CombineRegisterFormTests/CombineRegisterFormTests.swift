@@ -28,7 +28,7 @@ final class CombineRegisterFormTests: XCTestCase {
         sut.password = "12345678"
         sut.repeatPassword = sut.password
         
-        sut.$validationErrorMsg
+        sut.$validationError
             .sink(receiveValue: { value in
                 XCTAssertNil(value)
                 expectation.fulfill()
@@ -36,5 +36,23 @@ final class CombineRegisterFormTests: XCTestCase {
             .store(in: &subscriptions)
         
         wait(for: [expectation], timeout: 1)
+    }
+    
+    func test_validatesPasswordsMatch() {
+        let expectation = XCTestExpectation(description: "waiting...")
+
+        let sut = FormModel()
+        sut.password = "12345678"
+        sut.repeatPassword = "12345678"
+        
+        sut.$validationError
+            .sink(receiveValue: { value in
+                XCTAssertNil(value)
+                expectation.fulfill()
+            })
+            .store(in: &subscriptions)
+        
+        wait(for: [expectation], timeout: 1)
+
     }
 }
