@@ -11,6 +11,14 @@ import Combine
 class FormModel: ObservableObject {
     static let passwordMinLimit = 8
     
+    enum ValidationError: Error {
+        case tooShort
+        case notContainsNumbers
+        case notContainsLetters
+        case notContainsSpecialChars
+        case doesNotMatch
+    }
+    
     // MARK: Publishers
     private let passwordPub = CurrentValueSubject<String, Never>("")
     private let passwordRepeatPub = CurrentValueSubject<String, Never>("")
